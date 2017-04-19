@@ -1,0 +1,194 @@
+---
+title: "README_R_functions"
+author: "Hannah Allen"
+date: "April 19, 2017"
+output:
+  word_document:
+    toc: yes
+  html_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
+```
+
+#Function names listed below
+
+#age.R
+**Purpose**: Calculate age of patient in year, month, and day of life for any dataframe with patient's medical record number, date of birth, and date on therapy.
+
+**What you need to know**: This function requires the lubridate package and uses the interval function in the lubridate package to get age in years and months. If you do not have lubridate installed then enter the following to install and library the package
+
+```{r eval=FALSE}
+install.packages("lubridate")
+library(lubridate)
+```
+
+If the data frame you are using does not have date of birth then you will need to add that in before using age.R. The subset_dopkt.R function will add date of birth to your data frame if you have patient medical record number and date on therapy.
+
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name_calculated is the name of the table you want the day of life, month, and year calculated age values to show up in and table_name
+
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/age.R")
+table_name_calculated <- age(table_name)
+```
+
+
+
+#baseline_bmi.R
+**Purpose**:
+
+**What you need to know**:
+
+**How to use**:
+
+
+#baseline_meds.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#baseline_sz.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#clean_anthros.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#deidentify.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#deidentify_demo.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#desc_stat.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#foodomics.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#ifc.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#irb.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#medscore.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#mrlist.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#outcomescore.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#query_patient_pkt.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#subset_dopkt.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#subset_pop.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#szscore.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+#total_time_on_pkt.R
+**Purpose**: 
+
+**What you need to know**:
+
+**How to use**:
+
+
+
+
+
+
+
+
+
+
+
+
+
+

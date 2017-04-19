@@ -27,7 +27,7 @@ library(lubridate)
 
 If the data frame you are using does not have date of birth then you will need to add that in before using age.R. The subset_dopkt.R function will add date of birth to your data frame if you have patient medical record number and date on therapy.
 
-**How to use**: Paste the lines below into your R code and modify per criteria where table_name_calculated is the name of the table you want the day of life, month, and year calculated age values to show up in and table_name
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name_calculated is the name of the data frame you want the day of life, month, and year calculated age values to show up in and table_name is the name of the data frame you want to calculate day of life, month, and year age values from.
 
 ```{r eval=FALSE}
 source("https://raw.githubusercontent.com/borumlab/functions/master/age.R")
@@ -35,93 +35,137 @@ table_name_calculated <- age(table_name)
 ```
 
 
-
 #baseline_bmi.R
-**Purpose**:
+**Purpose**: Subsets a population if they have a baseline BMI. 
 
-**What you need to know**:
+**What you need to know**: This function uses the table called anthropometrics_id_research and the column headers called "BMI_DAY", 'DAY_TYPE", and "MRNUMBER". This function will only create a list of medical record numbers for patients that have a BMI value in BMI_DAY for DAY_TYPE equal to 1 (meaning baseline).
 
-**How to use**:
+**How to use**:  Paste the lines below into your R code and modify per criteria where baseline_list_bmi is the name of the data frame with the list of medical record numbers that have bmi values at baseline.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/baseline_bmi.R")
+baseline_list_bmi <- baseline_bmi()
+```
+
+
+#baseline_foodomics.R
+**Purpose**: Subsets a population if they have a baseline foodomics. 
+
+**What you need to know**: This function uses the table called foodomics_daily_diet_research and the column headers called "MRNUMBER". This function will only create a list of medical record numbers for patients that have a medical record number in this table (meaning the patient has foodomics data).
+
+**How to use**:  Paste the lines below into your R code and modify per criteria where baseline_list_foodomics is the name of the data frame with the list of medical record numbers that have foodomics values at baseline.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/baseline_foodomcis.R")
+baseline_list_food <- baseline_foodomics()
+```
 
 
 #baseline_meds.R
-**Purpose**: 
+**Purpose**: Subsets a population if they have a Med Load greater than a value x at baseline. 
 
-**What you need to know**:
+**What you need to know**: This function uses the table called med_data_id_research and the column headers "MED_LOAD_DAY", "DAY_TYPE", and "MRNUMBER". This function will only create a list of medical record numbers for patients that have a Med Load value in MED_LOAD_DAY for DAY_TYPE equal to 1 (meaning baseline) and the Med Load value must be greater than x.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where baseline_list_meds is the name of the data frame with the list of medical record numbers that have Med Load values at baseline greater than x and x is the value you want Med Load to be greater than (e.g. 0).
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/baseline_meds.R")
+baseline_list_meds <- baseline_meds(x)
+```
 
 
 #baseline_sz.R
-**Purpose**: 
+**Purpose**: Subsets a population if they have a Seizure Load greater than a value x at baseline
 
-**What you need to know**:
+**What you need to know**: This function uses the table called seizure_data_id_research and the column headers "SEIZURE_LOAD_DAY", "DAY_TYPE", and "MRNUMBER". This function will only create a list of medical record numbers for patients that have a Seizure Load value in SEIZURE_LOAD_DAY for DAY_TYPE equal to 1 (meaning baseline) and the Seizure Load value must be greater than x.
 
-**How to use**:
+**How to use**:Paste the lines below into your R code and modify per criteria where baseline_list_seizure is the name of the data frame with the list of medical record numbers that have Seizure Load values at baseline greater than x and x is the value you want Seizure Load to be greater than (e.g. 0).
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/baseline_seizures.R")
+baseline_list_seizures <- baseline_sz(x)
+```
 
 
 #clean_anthros.R
-**Purpose**: 
+**Purpose**: Retains anthropometric values calculated from organizations as recommended by CDC, ASPEN, AND
 
-**What you need to know**:
+**What you need to know**: This function uses the table called anthropometrics_id_research and the column headers "DAY_TYPE", "AGE_MO", "AGE_DOL", WHO_HT_Z_DAY", "CDC_HT_Z_DAY", "NHANES_HT_Z_DAY", "WHO_WT_Z_DAY", "CDC_WT_Z_DAY", "NHANES_WT_Z_DAY", "WHO_BMI_Z_DAY", "CDC_BMI_Z_DAY", "NHANES_BMI_Z_DAY", "WHO_UAC_Z_DAY", "NHANES_UAC_Z_DAY", "WHO_TSF_Z_DAY", "NHANES_TSF_Z_DAY", "WHO_SSF_Z_DAY", "NHANES_SSF_Z_DAY". This function will only keep height, weight and bmi z-score fro WHO for children <2 years of age and CDC fo children >= 2 years of age up to 20 years of age, and NHANES after 20 years of age. This function will only keep UAC, TSF, and SSF from WHO if <=1856 days of life otherwise it will use NHANES data.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where anthropometrics_id_research is the name of the data frame where you want the "cleaned" anthropometrics to go.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/clean_anthros.R")
+anthropometrics_id_research <- clean_anthros()
+```
 
 
 #deidentify.R
-**Purpose**: 
+**Purpose**: Deidentify patient medical record numbers with a KGID and deletes other identify columns with date
 
-**What you need to know**:
+**What you need to know**: This function uses the table kgid_mrnumber_link_research and columns "MRNUMBER"" and "KGID"  to deidentify any table that has MRNUMBER. This function also deletes the following identifier colums: PKT_INITIATED_DATE, DOB,DATE,MRNUMBER. This function cannot be used for the demographics sheet since there are additional identifiers in that sheet that are not met with this function.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name_deidentify is the name of the data frame where you want the deidentified data to go and table_name is the name of the data frame you want to deidentify.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/deidentify.R")
+table_name_deidentify <- deidentify(table_name)
+```
 
 
 #deidentify_demo.R
-**Purpose**: 
+**Purpose**: Deidentify patient information in the demogrpahics table
 
-**What you need to know**:
+**What you need to know**: This function uses the table demographics_id_calculated and columns that include date, name, city, state, zip code, county.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where demographics_id_calculated is the name of the data frame where you want the deidentified data to go.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/deidentify_demo.R")
+demographics_id_calculated <- deidentify_demo()
+```
 
 
 #desc_stat.R
-**Purpose**: 
+**Purpose**: To calculate descriptive statistics on a parameter within a population
 
-**What you need to know**:
+**What you need to know**: This function requires the name of the data frame and column and time frame you wish to do descriptive statistics. This function calculates the following descriptive statistics: total number of values, mean, median, standard deviation, standard error, maximum, minimum, range, 5th percetnile, 25th percentile, 50th percentile, 75th percentile, 95th percentile, variance, and coefficient of variation. It will only calculate descriptive stats on one time frame at a time.
 
-**How to use**:
+**How to use**:Paste the lines below into your R code and modify per criteria where table name is the name of the data frame you want the descriptive statistics to go, df is the name of the data frame you want to do the descriptive statistics on, column name is the name of the column within the data frame you want to do the descriptive statistics on, and DOPKT_value is a numerical value you want to do descriptive statistics on (e.g. 30) you may also enter "all" and this function will do descriptive statistics on all data with the specified data fram and column name.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/desc_stat.R")
+table_name <- desc_stat(df, "column name", DOPKT_value)
 
-
-#foodomics.R
-**Purpose**: 
-
-**What you need to know**:
-
-**How to use**:
+```
 
 
 #ifc.R
-**Purpose**: 
+**Purpose**: Subsets a population that signed the informed consent before x date
 
-**What you need to know**:
+**What you need to know**: This function uses the table demographics_id_calculated and column header called "PKT_PROSPECTIVE_DATE". This will eliminate all patients that did not sign the informed consent before x date from the table.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where demographics_id_calculated is the name of the data frame where you want the patients that meet the criteria to go and mm/dd/yyyy is the date you want all patients to have signed the informed consent by.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/ifc.R")
+demographics_id_calculated <- ifc('mm/dd/yyyy')
+```
 
 
 #irb.R
-**Purpose**: 
+**Purpose**: Subsets a population that is on a x IRB protocol number
 
-**What you need to know**:
+**What you need to know**: This function uses the table demographics_id_calculated and column header called "IRB_NUMBER". This will eliminate all patients that are not on x IRB protocol number.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where demographics_id_calculated is the name of the data frame where you want the patients that meet the criteria to go and TYPE IRB# HERE is the IRB protocol number you want patients to be on.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/irb.R")
+demographics_id_calculated <- irb("TYPE IRB# HERE")
+```
 
 
 #medscore.R
-**Purpose**: 
+**Purpose**: Calculate med score for time intervals equal to x number of days
 
-**What you need to know**:
+**What you need to know**: This function uses the tables med_data_id_research and a data frame with the list of medical record numbers you want to use after going through inclusion and exclusion criteria. If you enter 30 as the time period value then med score will be calculated for time intervals equal to 30 days where 1 is the beginning of the time period and 30 is the end of the time period. Refer to manuscript x for med score calculations.
 
-**How to use**:
+**How to use**:Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclation to go and time period value is the numerical value you want med score calulcated at specified intervals, and population list is the name of the data frame with the listo f medical record numbers that meet the inclusion and exclusion criter.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/medscore.R")
+table_name<-medscore(time period value, population list)
+```
 
 
 #mrlist.R

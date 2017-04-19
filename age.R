@@ -1,7 +1,7 @@
 #calculate age at time of data collection in year, month, and day of life
 #how to use: paste the lines below into your R code and modify per criteria
 #source("age.R")
-#table_name <- age(table_name)
+#table_name_calculated <- age(table_name)
 
 age <- function(table){
   

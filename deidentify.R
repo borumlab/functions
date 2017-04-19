@@ -1,7 +1,7 @@
 #de-identify the data
 #how to use: paste the lines below into your R code and modify per criteria
 #source("deidentify.R")
-#table_name <- deidentify(table_name)
+#table_name_deidentify <- deidentify(table_name)
 
 deidentify <- function(table){
   

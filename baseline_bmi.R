@@ -6,7 +6,7 @@
 baseline_bmi <- function(){
   
   #select patients that have baseline BMI
-  baseline_bmi <- subset(anthropometrics_id_research, BMI!="NA" & DAY_TYPE==1)
+  baseline_bmi <- subset(anthropometrics_id_research, BMI_DAY!="NA" & DAY_TYPE==1)
   
   #get list of patients with baseline BMI
   baseline_list_bmi <- subset(baseline_bmi, select="MRNUMBER")

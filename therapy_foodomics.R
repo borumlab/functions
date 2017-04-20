@@ -3,7 +3,7 @@
 #source("foodomics.R")
 #list_food <- foodomics()
 
-foodomics <- function(){
+therapy_foodomics <- function(){
   
   #get list of patients with food data
   listfood<-subset(foodomics_daily_diet_research,select="MRNUMBER")

@@ -54,7 +54,7 @@ baseline_list_bmi <- baseline_bmi()
 
 **How to use**:  Paste the lines below into your R code and modify per criteria where baseline_list_foodomics is the name of the data frame with the list of medical record numbers that have foodomics values at baseline.
 ```{r eval=FALSE}
-source("https://raw.githubusercontent.com/borumlab/functions/master/therapy_foodomcis.R")
+source("https://raw.githubusercontent.com/borumlab/functions/master/therapy_foodomics.R")
 therapy_list_food <- therapy_foodomics()
 ```
 
@@ -211,7 +211,7 @@ source("query_patient_pkt.R")
 
 **How to use**: Paste the lines below into your R code and modify per criteria where table_name_dopkt is the name of the data frame where you want the patients that meet the criteria to go and table_name is the name of the dataframe you want to apply the criteria to and specify days on pkt is the number of days on PKT you want patients to have at least been on (it will remove all patients that are less than this number).
 ```{r eval=FALSE}
-source("https://raw.githubusercontent.com/borumlab/functions/master/subset_pkt.R")
+source("https://raw.githubusercontent.com/borumlab/functions/master/subset_dopkt.R")
 table_name_dopkt <- subset_dopkt(table_name, specify days on pkt)
 ```
 
@@ -219,7 +219,7 @@ table_name_dopkt <- subset_dopkt(table_name, specify days on pkt)
 #subset_pop.R
 **Purpose**:  Subsets a population for each data table based on list of medical record numbers that meet inclusion and exclusion criteria. 
 
-**What you need to know**: This function uses only column header called "MRNUMBER" in the data frames you pass in. 
+**What you need to know**: This function uses only column header called "MRNUMBER" in the data frames you pass in. This cannot be used unless subset_dopkt is used before this function is used.
 
 **How to use**: Paste the lines below into your R code and modify per criteria where table_name_pop is the name of the data frame where you want the patients that meet the criteria to go and table_name is the name of the dataframe you want to apply the criteria to and pop0000xx is the name of the dataframe that has the list of medical record numbers that meet inclusion and exclusion criteria).
 ```{r eval=FALSE}

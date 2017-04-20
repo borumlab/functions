@@ -47,15 +47,15 @@ baseline_list_bmi <- baseline_bmi()
 ```
 
 
-#baseline_foodomics.R
+#therapy_foodomics.R
 **Purpose**: Subsets a population if they have a baseline foodomics. 
 
 **What you need to know**: This function uses the table called foodomics_daily_diet_research and the column headers called "MRNUMBER". This function will only create a list of medical record numbers for patients that have a medical record number in this table (meaning the patient has foodomics data).
 
 **How to use**:  Paste the lines below into your R code and modify per criteria where baseline_list_foodomics is the name of the data frame with the list of medical record numbers that have foodomics values at baseline.
 ```{r eval=FALSE}
-source("https://raw.githubusercontent.com/borumlab/functions/master/baseline_foodomcis.R")
-baseline_list_food <- baseline_foodomics()
+source("https://raw.githubusercontent.com/borumlab/functions/master/therapy_foodomcis.R")
+therapy_list_food <- therapy_foodomics()
 ```
 
 
@@ -78,7 +78,7 @@ baseline_list_meds <- baseline_meds(x)
 
 **How to use**:Paste the lines below into your R code and modify per criteria where baseline_list_seizure is the name of the data frame with the list of medical record numbers that have Seizure Load values at baseline greater than x and x is the value you want Seizure Load to be greater than (e.g. 0).
 ```{r eval=FALSE}
-source("https://raw.githubusercontent.com/borumlab/functions/master/baseline_seizures.R")
+source("https://raw.githubusercontent.com/borumlab/functions/master/baseline_sz.R")
 baseline_list_seizures <- baseline_sz(x)
 ```
 
@@ -235,8 +235,8 @@ table_name_pop <- subset_pop(table_name, pop0000xx)
 
 **How to use**:Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclation to go and time period value is the numerical value you want seizure score calulcated at specified intervals, and population list is the name of the data frame with the list of medical record numbers that meet the inclusion and exclusion criteria.
 ```{r eval=FALSE}
-source("https://raw.githubusercontent.com/borumlab/functions/master/seizurescore.R")
-table_name<-medscore(time period value, population list)
+source("https://raw.githubusercontent.com/borumlab/functions/master/szscore.R")
+table_name<-szscore(time period value, population list)
 ```
 
 

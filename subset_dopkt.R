@@ -1,7 +1,7 @@
 #calculate time on PKT at time of data collection and remove data after desired days on PKT
 #how to use: paste the lines below into your R code and modify per criteria
 #source("subset_dopkt.R")
-#table_name <- subset_dopkt(table_name, specify days on pkt)
+#table_name_dopkt <- subset_dopkt(table_name, specify days on pkt)
 
 subset_dopkt <- function(a,b){
   

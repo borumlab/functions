@@ -1,7 +1,7 @@
 #select population based on total time on PKT from demographics
 #how to use: paste the lines below into your R code and modify per criteria
 #source("total_time_on_pkt.R")
-#demographics_id_calculated <- total_time_on_pkt('mm/dd/yyyy',specify number of days)
+#table_name <- total_time_on_pkt('mm/dd/yyyy',specify number of days)
 
 total_time_on_pkt <- function(x,y){
   

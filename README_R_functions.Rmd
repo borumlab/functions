@@ -161,7 +161,7 @@ demographics_id_calculated <- irb("TYPE IRB# HERE")
 
 **What you need to know**: This function uses the tables med_data_id_research and a data frame with the list of medical record numbers you want to use after going through inclusion and exclusion criteria. If you enter 30 as the time period value then med score will be calculated for time intervals equal to 30 days where 1 is the beginning of the time period and 30 is the end of the time period. Refer to manuscript x for med score calculations.
 
-**How to use**:Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclation to go and time period value is the numerical value you want med score calulcated at specified intervals, and population list is the name of the data frame with the listo f medical record numbers that meet the inclusion and exclusion criter.
+**How to use**:Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclation to go and time period value is the numerical value you want med score calulcated at specified intervals, and population list is the name of the data frame with the listo f medical record numbers that meet the inclusion and exclusion criteria.
 ```{r eval=FALSE}
 source("https://raw.githubusercontent.com/borumlab/functions/master/medscore.R")
 table_name<-medscore(time period value, population list)
@@ -169,59 +169,87 @@ table_name<-medscore(time period value, population list)
 
 
 #mrlist.R
-**Purpose**: 
+**Purpose**: Obtain list of medical record numbers from different data frames after applying inclusion and exclusion criteria.
 
-**What you need to know**:
+**What you need to know**: This function uses up to 5 data frames, e.g. (demo_list, baseline_list_seizure, baseline_list_meds, baseline_list_food, baseline_list_bmi) to get a collective list of medical record numbers after each data frame has undergone inclusion and exclusion criteria. It uses the MRNUMBER column in each data frame to create a list of medical record numbers.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where pop0000xx is the name of the data frame where you want the list of medical record numbers to go and a, b, c, d, e is the name of each data frame you want to create the list of medical record numbers from.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/mrlist.R")
+pop0000xx <- mrlist(a,b,c,d,e)
+```
 
 
 #outcomescore.R
-**Purpose**: 
+**Purpose**: Caclulate outcome score from previously calculated seizure score and med score tables.
 
-**What you need to know**:
+**What you need to know**: This function uses the tables seizure_table_deidentified and med_table_deidentified and column headers "KGID", "DOPKT", "SEIZURE_SCORE", and "MED_SCORE". See manuscript x for more details on the calculation. The result of this function will give a data frame with outcome score, seizure score, and med score for KGID and DOPKT.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where table name is the name of the data frame where you want the calculated outcome score to go and seizure table name and med table name are the names of the seizure table and med table you want to calculate outcome score from.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/outcomescore.R")
+table_name<-outcomescore(seizure table name, med table name)
+```
 
 
 #query_patient_pkt.R
-**Purpose**: 
+**Purpose**: To get tables from MySQL from a specified database and host where credentials are passed in.
 
-**What you need to know**:
+**What you need to know**: Currently, this script is hard coded with hannah's username, database name patient_pkt, and host IF-SRVV-BORUM. It is also hard coded to grab a list of table names as they are currently named in MySQL from the specified schema.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code. We have removed this from Github because we need to be able to pass database and credential information in without hardcoding it in. Currently, it is located in the directory listed below. Contacnt hannah for password information.
+```{r eval=FALSE}
+setwd("G:/MySQL Database/Bins/Queries/Functions/")
+source("query_patient_pkt.R")
+```
 
 
 #subset_dopkt.R
-**Purpose**: 
+**Purpose**:  Subsets a population that was on PKT after x number of days. 
 
-**What you need to know**:
+**What you need to know**: This function uses the table demographics_id_calculated and column header called "MRNUMBER", "PKT_INITIATED_DATE", "DOB", and "DATE" in the data frame you pass into the function. This function will first convert date to day on PKT (create "DOPKT" column) and then remove all patient data where patients were not on PKT after x number of days. 
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name_dopkt is the name of the data frame where you want the patients that meet the criteria to go and table_name is the name of the dataframe you want to apply the criteria to and specify days on pkt is the number of days on PKT you want patients to have at least been on (it will remove all patients that are less than this number).
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/subset_pkt.R")
+table_name_dopkt <- subset_dopkt(table_name, specify days on pkt)
+```
 
 
 #subset_pop.R
-**Purpose**: 
+**Purpose**:  Subsets a population for each data table based on list of medical record numbers that meet inclusion and exclusion criteria. 
 
-**What you need to know**:
+**What you need to know**: This function uses only column header called "MRNUMBER" in the data frames you pass in. 
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name_pop is the name of the data frame where you want the patients that meet the criteria to go and table_name is the name of the dataframe you want to apply the criteria to and pop0000xx is the name of the dataframe that has the list of medical record numbers that meet inclusion and exclusion criteria).
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/subset_pop.R")
+table_name_pop <- subset_pop(table_name, pop0000xx)
+```
 
 
 #szscore.R
-**Purpose**: 
+**Purpose**: Calculate seizure score for time intervals equal to x number of days
 
-**What you need to know**:
+**What you need to know**: This function uses the tables seizure_data_id_research and a data frame with the list of medical record numbers you want to use after going through inclusion and exclusion criteria. If you enter 30 as the time period value then seizure score will be calculated for time intervals equal to 30 days where 1 is the beginning of the time period and 30 is the end of the time period. Refer to manuscript x for seizure score calculations.
 
-**How to use**:
+**How to use**:Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclation to go and time period value is the numerical value you want seizure score calulcated at specified intervals, and population list is the name of the data frame with the list of medical record numbers that meet the inclusion and exclusion criteria.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/seizurescore.R")
+table_name<-medscore(time period value, population list)
+```
 
 
 #total_time_on_pkt.R
-**Purpose**: 
+**Purpose**: Subsets a population that was on PKT with data before x date and up to x days on PKT 
 
-**What you need to know**:
+**What you need to know**: This function uses the tables demographics_id_calculated with column headers "PKT_STOPPED_DATE" and "PKT_INITIATED_DATE" and any data frame you pass into it. This function will create a column header called "TOTAL_DAYS_PKT". Medical record numbers will be eliminated if they were not on PKT before x date and have data up to x days on PKT.
 
-**How to use**:
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclations to go and mm/dd/yyyy is the latest date to use to get x day s on PKT and specify number of days is the least number of days you wants patients to have been on PKT.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/total_time_on_pkt.R")
+table_name <- total_time_on_pkt('mm/dd/yyyy',specify number of days)
+```
 
 
 

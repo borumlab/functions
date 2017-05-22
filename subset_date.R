@@ -1,4 +1,4 @@
-#calculate time on PKT at time of data collection and remove data after desired date on PKT
+#remove data after desired date on PKT
 #how to use: paste the lines below into your R code and modify per criteria
 #source("subset_date.R")
 #table_name <- subset_date(table_name, 'mm/dd/yyyy')

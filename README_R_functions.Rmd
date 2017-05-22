@@ -251,11 +251,38 @@ source("https://raw.githubusercontent.com/borumlab/functions/master/total_time_o
 table_name <- total_time_on_pkt('mm/dd/yyyy',specify number of days)
 ```
 
+#response_level.R
+**Purpose**: Function will group patients on Seizure Score based on response level cutoffs for 4 categories
 
+**What you need to know**: This function only uses the Seizure Score and you must put in 4 different categories to group patients. There must be a column called SEIZURE_SCORE in your dataframe in order for this function to work. You must enter whole numbers for the response level category
 
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name is the data frame you want to modify, df is the name of the data frame with Seizure Score column and x is the lowest number in the response level category (e.g. 10), y is the second lowest number in the response level category (e.g. 50), z is the third lowest number in the response level category (e.g. 80), and a must be equal to z since a is the highest number in the response level category.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/response_level.R")
+table_name <- response_level(df,x,y,z,a)
+```
 
+#subset_date.R
+**Purpose**: Removes data after desired date on PKT 
 
+**What you need to know**: This function will remove all data after date entered into this function. This function may be useful to remove data based on a decided upon last date in the population. The data frame you will apply this to will likely be the demographics data frame. It needs to have a column header called DATE.
 
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclations to go and x is the data frame you want to apply the calculations to (e.g. demographics data frame) and y is the last date you want data for the population and must be written as mm//dd/yyyy.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/subset_date.R")
+table_name <- subset_Date(x,y)
+```
+
+#demoDesc.R
+**Purpose**: Calculates the frequency of a parameter in the demographics table 
+
+**What you need to know**: You must use the demographics data frame and column names. This is helpful to calculate the percent of patients for each demographic type within a population.
+
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclations to go and df is the name of the data frame you want to apply the calculations to (e.g. demographics) and col="column" is the column name in the data frame you want to calculate the percent of a particular demographic on.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/demoDesc.R")
+table_name <- demoDesc(df, col="column")
+```
 
 
 

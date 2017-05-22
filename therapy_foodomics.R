@@ -8,7 +8,7 @@ therapy_foodomics <- function(){
   #get list of patients with food data
   listfood<-subset(foodomics_daily_diet_research,select="MRNUMBER")
  
-  #create list of unique MRNUMBER with baseline med
+  #create list of unique MRNUMBER with baseline food
   listfood<-(unique(listfood,fromLast = TRUE ))
   
   return(listfood)

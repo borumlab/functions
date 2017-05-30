@@ -34,6 +34,16 @@ source("https://raw.githubusercontent.com/borumlab/functions/master/age.R")
 table_name_calculated <- age(table_name)
 ```
 
+#age_initiation.R
+**Purpose**: calculate age at initiation and subset patients who are less than your selected age
+
+**What you need to know**: This function uses the table demographics_id_calculated and the column headers called "DOB" and "PKT_INITIATED_DATE". This function gives you the ability to only include patients who were less than a specified age at baseline.
+
+**How to use**: Paste the lines below into your R code and modify per criteria where demographics_id_calculated is the name of the data frame. Age in years is the maximum age of patients you want included at baseline.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/age_initiation.R")
+demographics_id_calculated <- age_initiation(age in years)
+```
 
 #baseline_bmi.R
 **Purpose**: Subsets a population if they have a baseline BMI. 
@@ -45,7 +55,6 @@ table_name_calculated <- age(table_name)
 source("https://raw.githubusercontent.com/borumlab/functions/master/baseline_bmi.R")
 baseline_list_bmi <- baseline_bmi()
 ```
-
 
 #therapy_foodomics.R
 **Purpose**: Subsets a population if they have a baseline foodomics. 
@@ -181,7 +190,7 @@ pop0000xx <- mrlist(a,b,c,d,e)
 
 
 #outcomescore.R
-**Purpose**: Caclulate outcome score from previously calculated seizure score and med score tables.
+**Purpose**: Calculate outcome score from previously calculated seizure score and med score tables.
 
 **What you need to know**: This function uses the tables seizure_table_deidentified and med_table_deidentified and column headers "KGID", "DOPKT", "SEIZURE_SCORE", and "MED_SCORE". See manuscript x for more details on the calculation. The result of this function will give a data frame with outcome score, seizure score, and med score for KGID and DOPKT.
 
@@ -189,6 +198,17 @@ pop0000xx <- mrlist(a,b,c,d,e)
 ```{r eval=FALSE}
 source("https://raw.githubusercontent.com/borumlab/functions/master/outcomescore.R")
 table_name<-outcomescore(seizure table name, med table name)
+```
+
+#pkt_bmi.R
+**Purpose**: Select patients that have BMI available at desired time point on PKT (get rid of patients with missing data).
+
+**What you need to know**: This function should only be used if the subset_dopkt.R function has already been applied. It uses a modified anthropometrics_id_table. It will subset patient data if there is missing data based on the specified time point.
+
+**How to use**: Paste the lines below into your R code and modify per criteria where pkt_list_bmi is the name of the data frame that lists MR numbers which meet your criteria and x months represents the amount of time on PKT that you want to be sure patients have data that is not missing.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/pkt_bmi.R")
+pkt_list_bmi <- pkt_bmi(x months)
 ```
 
 

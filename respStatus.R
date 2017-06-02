@@ -1,7 +1,7 @@
 #assign response level based on Seizure score using 10, 80, and >80 as cutoffs
 #how to use: paste the lines below into your R code and modify per criteria
 #source("respStatus.R")
-#anthros <- respStatus(df, col = "column")
+#table_name <- respStatus(df, col = "column")
 
 respStatus <- function (df, col = "column"){
   

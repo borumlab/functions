@@ -304,8 +304,27 @@ source("https://raw.githubusercontent.com/borumlab/functions/master/demoDesc.R")
 table_name <- demoDesc(df, col="column")
 ```
 
+#respStatus.R
+**Purpose**: Assigns response levels based on Seizure, Med, or Outcome Score values. The Response levels it assigns are level 1: when score is 0-<=10%, level 2: when score is >10%-<=80%, level 3: when score is >80%
 
+**What you need to know**: You must use a data frame with column headers called SEIZURE_SCORE, MED_SCORE_ OUTCOME_SCORE. Values in the columns cannot be blank in order for it to assign response levels. When it assigns a response level it will create a new column called SEIZURE_RESPONSE, MED_RESPONSE, and OUTCOME_RESPONSE for SEIZURE_SCORE, MED_SCORE, and OUTCOME_SCORE, respectively. It will then input the text "level1" "level2", or "level3" for response level 1, level 2, and level 3 respectively.
 
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclations to go and df is the name of the data frame you want to apply the calculations to (e.g. demographics) and col="column" is the column name in the data frame you want to calculate the response level for (e.g. SEIZURE_SCORE, MED_SCORE, OUTCOME_SCORE.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/respStatus.R")
+table_name <- respStatus(df, col = "column")
+```
+
+#respStatus2.R
+**Purpose**: Assigns response levels within those assigned response level 2 from respStatus.R function based on Seizure, Med, or Outcome Score values. The Response levels it assigns are level 2_1: when score is >10%-<=50% and level 2_2: when score is >50%-<=80%
+
+**What you need to know**: I apply the function respStatus to a data frame first and then subset the data frame to only include those values that were response level 2. I must then remove the SEIZURE_RESPONSE, MED_RESPONSE, and OUTCOME_RESPONSE columns to run this function. Once that happens, then you must use a data frame with column headers called SEIZURE_SCORE, MED_SCORE_ OUTCOME_SCORE. Values in the columns cannot be blank in order for it to assign response levels. When it assigns a response level it will create a new column called SEIZURE_RESPONSE, MED_RESPONSE, and OUTCOME_RESPONSE for SEIZURE_SCORE, MED_SCORE, and OUTCOME_SCORE, respectively. It will then input the text "level2_1" or "level2_2" for response level 2_1 or level 2_2 respectively. You must then rbind this data frame with the data frames that have response level 1 and response level 3 if you want a data frame with all 4 response levels.
+
+**How to use**: Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclations to go and df is the name of the data frame you want to apply the calculations to (e.g. demographics) and col="column" is the column name in the data frame you want to calculate the response level for (e.g. SEIZURE_SCORE, MED_SCORE, OUTCOME_SCORE.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/respStatus2.R")
+table_name <- respStatus2(df, col = "column")
+```
 
 
 

@@ -205,10 +205,10 @@ table_name<-outcomescore(seizure table name, med table name)
 
 **What you need to know**: This function should only be used if the subset_dopkt.R function has already been applied. It uses a modified anthropometrics_id_table. It will subset patient data if there is missing data based on the specified time point.
 
-**How to use**: Paste the lines below into your R code and modify per criteria where pkt_list_bmi is the name of the data frame that lists MR numbers which meet your criteria and x months represents the amount of time on PKT that you want to be sure patients have data that is not missing.
+**How to use**: Paste the lines below into your R code and modify per criteria where pkt_list_bmi is the name of the data frame that lists MR numbers which meet your criteria and x days represents the amount of time on PKT that you want to be sure patients have data that is not missing.
 ```{r eval=FALSE}
 source("https://raw.githubusercontent.com/borumlab/functions/master/pkt_bmi.R")
-pkt_list_bmi <- pkt_bmi(x months)
+pkt_list_bmi <- pkt_bmi(x days)
 ```
 
 

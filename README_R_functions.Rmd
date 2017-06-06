@@ -45,6 +45,17 @@ source("https://raw.githubusercontent.com/borumlab/functions/master/age_initiati
 demographics_id_calculated <- age_initiation(age in years)
 ```
 
+#anthro_avg.R
+**Purpose**: Calculate average anthros for time intervals equal to x number of days
+
+**What you need to know**: This function uses the tables anthropometrics_id_research and a data frame with the list of medical record numbers you want to use after going through inclusion and exclusion criteria. If you enter 7 as the time period value then seizure score will be calculated for time intervals equal to 7 days where 1 is the beginning of the time period and 7 is the end of the time period.
+
+**How to use**:Paste the lines below into your R code and modify per criteria where table_name is the name of the data frame where you want the calclation to go and time period value is the numerical value you want seizure score calulcated at specified intervals, and population list is the name of the data frame with the list of medical record numbers that meet the inclusion and exclusion criteria.
+```{r eval=FALSE}
+source("https://raw.githubusercontent.com/borumlab/functions/master/anthro_avg.R")
+table_name<-anthro_avg(time period in days, population list, col="column name")
+```
+
 #baseline_bmi.R
 **Purpose**: Subsets a population if they have a baseline BMI. 
 

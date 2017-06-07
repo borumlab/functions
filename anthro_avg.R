@@ -3,7 +3,7 @@
 #source("anthro_avg.R")
 #table_name <- anthro_avg(time_period in days, poplist, col="column of interest")
 
-anthro_avg <- function(time_period, poplist, col = "column") {
+anthro_avg <- function(time_period, poplist, col = "column", name = "column") {
   
   library(plyr)
   
@@ -53,7 +53,7 @@ anthro_avg <- function(time_period, poplist, col = "column") {
     list_emptydf_block <- unname(unlist(list_emptydf_block)) 
     
     # merge list_row number by the and list together
-    emptydf <- data.frame(NROW = list_row, col = list_emptydf_block) 
+    emptydf <- data.frame(NROW = list_row, name = list_emptydf_block) 
     
     # make NROW an integer again
     emptydf <- transform(emptydf, NROW=as.integer(NROW))

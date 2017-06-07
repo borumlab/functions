@@ -67,7 +67,7 @@ anthro_avg <- function(time_period, poplist, col = "column", name = "column") {
     
   }
   
-  names(anthropkt_final)[names(anthropkt_final)=="col"] <- col
+  names(anthropkt_final)[names(anthropkt_final)=="name"] <- name
   
   return(anthropkt_final)
   
